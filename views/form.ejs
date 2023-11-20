@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SKS SWOT Analysis Tool</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            /* background-color: #00aeef; */
+        }
+        #container {
+            max-width: 75%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            text-align: center;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #results {
+            margin-top: 20px;
+            display: none;
+        }
+
+        #submit{
+            width: 30%;
+        }
+
+        label{
+            font-size: larger;
+            font-weight: bolder;
+        }
+
+
+
+        @media (max-width: 768px) {
+            #container {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="container" class="container">
+    <h2>SKS SWOT Analysis Tool</h2>
+
+    <form id="questions" onsubmit="evaluateSWOT(event)">
+        <!-- <h3>Strengths</h3> -->
+        <label>1. What are the core competencies of your company?</label> <br>
+        <input type="radio" name="strengths1" value="30"> Strong and unique products/services <br> <br>
+        <input type="radio" name="strengths1" value="80"> Efficient and streamlined processes <br> <br>
+        <input type="radio" name="strengths1" value="50"> Well-established brand reputation <br> <br>
+        <br>
+
+        <label>2. What advantages does your company have over competitors?</label> <br>
+        <input type="radio" name="strengths2" value="80"> Cutting-edge technology <br> <br>
+        <input type="radio" name="strengths2" value="30"> Superior customer service <br> <br>
+        <input type="radio" name="strengths2" value="50"> Strong distribution network <br> <br>
+        <br>
+
+        <label>3. What positive feedback does your company receive from customers?</label> <br>
+        <input type="radio" name="strengths3" value="80"> High customer satisfaction ratings <br> <br>
+        <input type="radio" name="strengths3" value="50"> Positive online reviews <br> <br>
+        <input type="radio" name="strengths3" value="30"> Repeat business and customer loyalty <br> <br>
+        <br>
+
+        <!-- <h3>Weaknesses</h3> -->
+        <label>4. What are the main internal challenges your company faces?</label> <br>
+        <input type="radio" name="weaknesses1" value="30"> Limited financial resources <br> <br>
+        <input type="radio" name="weaknesses1" value="50"> Outdated technology infrastructure <br> <br>
+        <input type="radio" name="weaknesses1" value="80"> Insufficient employee training programs <br> <br>
+        <br>
+
+        <label>5. What areas need improvement within your company?</label> <br>
+        <input type="radio" name="weaknesses2" value="30"> Ineffective communication between departments <br> <br>
+        <input type="radio" name="weaknesses2" value="80"> Slow response to market changes <br> <br>
+        <input type="radio" name="weaknesses2" value="50"> Lack of diversity in the workforce <br> <br>
+        <br>
+
+        <label>6. What negative feedback does your company receive from customers?</label> <br>
+        <input type="radio" name="weaknesses3" value="80"> Product quality issues <br> <br>
+        <input type="radio" name="weaknesses3" value="30"> Poor after-sales support <br> <br>
+        <input type="radio" name="weaknesses3" value="50"> Difficulty in reaching customer support <br> <br>
+        <br>
+<!-- 
+        <h3>Opportunities</h3> -->
+        <label>7. What emerging trends can your company capitalize on?</label> <br>
+        <input type="radio" name="opportunities1" value="30"> Increasing demand for sustainable products <br> <br>
+        <input type="radio" name="opportunities1" value="80"> Growing e-commerce market <br> <br>
+        <input type="radio" name="opportunities1" value="50"> Collaboration with industry influencers <br> <br>
+        <br>
+
+        <label>8. Are there untapped markets the company can explore?</label><br>
+        <input type="radio" name="opportunities2" value="50"> Expanding into international  <br> <br>
+        <input type="radio" name="opportunities2" value="80"> Targeting a younger demographic <br> <br>
+        <input type="radio" name="opportunities2" value="30"> Developing new partnerships with other businesses <br> <br>
+        <br>
+
+        <label>9. How can technological advancements benefit your company?</label> <br>
+        <input type="radio" name="opportunities3" value="80"> Adopting new digital marketing strategies <br> <br>
+        <input type="radio" name="opportunities3" value="50"> Implementing advanced data analytics <br> <br>
+        <input type="radio" name="opportunities3" value="30"> Investing in cutting-edge manufacturing technology <br> <br>
+        <br>
+
+        <!-- <h3>Threats</h3> -->
+        <label>10. What external factors pose risks to the company?</label> <br>
+        <input type="radio" name="threats1" value="30"> Intense competition in the industry <br> <br>
+        <input type="radio" name="threats1" value="50"> Economic downturns affecting consumer spending <br> <br>
+        <input type="radio" name="threats1" value="80"> Rapid changes in consumer preferences <br> <br>
+        <br>
+
+        <label>11. How might changes in government regulations impact your company?</label> <br>
+        <input type="radio" name="threats2" value="30"> Increased regulatory compliance costs <br> <br>
+        <input type="radio" name="threats2" value="80"> Restrictions on product advertising <br> <br>
+        <input type="radio" name="threats2" value="50"> Tariffs and trade restrictions <br> <br>
+        <br>
+
+        <label>12. What potential disruptions could the company face in the supply chain?</label> <br>
+        <input type="radio" name="threats3" value="80"> Dependence on a single supplier for key components <br> <br>
+        <input type="radio" name="threats3" value="50"> Transportation and logistics challenges <br> <br>
+        <input type="radio" name="threats3" value="30"> Vulnerability to natural disasters affecting production facilities <br> <br>
+        <br>
+        <!-- Inside the form -->
+
+<!-- <input type="text" name="totalMarks" id="totalMarks" value=""> -->
+
+
+        <button id="submit" type="submit">Proceed</button>
+    </form>
+
+     <div id="results">
+        <h3>SWOT Analysis Results:</h3>
+        <form action="/result" method="post">
+            <div id="org"><%= orgName  %></div>
+            <input type="hidden" name="strengthsMarks" id="strengthsMarks" value="">
+           <input type="hidden" name="weaknessesMarks" id="weaknessesMarks" value="">
+          <input type="hidden" name="opportunitiesMarks" id="opportunitiesMarks" value="">
+          <input type="hidden" name="threatsMarks" id="threatsMarks" value="">
+
+            <input type="submit" value="view">
+        </form>
+        <!-- <div id="strengthsResult"></div>
+        <div id="weaknessesResult"></div>
+        <div id="opportunitiesResult"></div>
+        <div id="threatsResult"></div>
+        <div id="totalResult"></div> -->
+    </div> 
+
+    <script>
+        function evaluateSWOT(event) {
+            event.preventDefault();
+            var strengthsMarks = 0 , weaknessesMarks = 0 , opportunitiesMarks = 0 , threatsMarks = 0
+            i=1;
+
+            for(var i = 1 ; i <= 3 ; i++){
+                strengthsMarks += parseInt(event.target[`strengths${i}`].value)
+                weaknessesMarks += parseInt(event.target[`weaknesses${i}`].value)
+                opportunitiesMarks += parseInt(event.target[`opportunities${i}`].value)
+                threatsMarks += parseInt(event.target[`threats${i}`].value)
+            }
+
+            strengthsMarks = Math.round((strengthsMarks/240)*100) ;
+            weaknessesMarks = (100- Math.round((weaknessesMarks/240)*100));
+            opportunitiesMarks = Math.round((opportunitiesMarks/240)*100);
+            threatsMarks =(100- Math.round((threatsMarks/240)*100));
+
+            document.getElementById("strengthsMarks").value = strengthsMarks;
+    document.getElementById("weaknessesMarks").value = weaknessesMarks;
+    document.getElementById("opportunitiesMarks").value = opportunitiesMarks;
+    document.getElementById("threatsMarks").value = threatsMarks;
+    // document.getElementById("totalMarks").value = totalMarks;
+
+            
+            
+         
+
+            
+            
+            // Display or process the results as needed
+
+            document.getElementById("results").style.display = "block";
+            // document.getElementById("strengthsResult").innerText = "Strengths Marks: " + strengthsMarks;
+            // document.getElementById("weaknessesResult").innerText = "Weaknesses Marks: " + weaknessesMarks;
+            // document.getElementById("opportunitiesResult").innerText = "Opportunities Marks: " + opportunitiesMarks;
+            // document.getElementById("threatsResult").innerText = "Threats Marks: " + threatsMarks;
+            // document.getElementById("totalResult").innerText = "Total Marks: " + totalMarks;
+        }
+    </script>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</div>
+
+</body>
+</html>

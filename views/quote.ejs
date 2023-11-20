@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Organization Form</title>
+    <style>
+        body {
+            padding: 20px;
+        }
+        .form-control{
+            width: 75%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Organization Details</h2>
+    <form action="/submit" method="post">
+        <div class="form-group">
+            <label for="orgName">Organization Name:</label>
+            <input type="text" class="form-control" id="orgName" name="orgName" required>
+        </div>
+        <div class="form-group">
+            <label for="chairpersonName">Chairperson Name:</label>
+            <input type="text" class="form-control" id="chairpersonName" name="chairpersonName" required>
+        </div>
+        <div class="form-group">
+            <label for="numEmployees">Number of Employees:</label>
+            <input type="number" class="form-control" id="numEmployees" name="numEmployees" required>
+        </div>
+        <div class="form-group">
+            <label for="yearlyTurnover">Yearly Turnover:</label>
+            <input type="number" class="form-control" id="yearlyTurnover" name="yearlyTurnover" required>
+        </div>
+        <div class="form-group">
+            <label for="numBranches">Number of Branches:</label>
+            <input type="number" class="form-control" id="numBranches" name="numBranches">
+        </div>
+        <button type="submit" class="btn btn-primary">Continue</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

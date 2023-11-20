@@ -1,0 +1,182 @@
+<html>
+  <head>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
+  </head>
+    <style>
+        body{
+   font-family: arial; 
+   text-align: center;
+}
+h1{
+  text-align: center;
+}
+.heading{
+  padding: 10px;
+  font-size: 30px;
+  border-bottom: 1px solid #ccc;
+  color: #666666;
+  font-weight: bold;
+}
+.big{
+  font-size: 240px;
+}
+.c100{
+  position: relative;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background-color: #ddd;
+  margin: 30px auto;
+}
+.c100:after{
+  content: '';
+  position: absolute;
+  background-color: #f5f5f5;
+  height: 0.84em;
+  width: 0.84em;
+  left: 0.08em;
+  top: 0.08em;
+  border-radius: 50%;
+}
+.no{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5em;
+  font-size: 0.2em;
+  line-height: 5em;
+  color: #aaa;
+  display: block;
+  text-align: center;
+  z-index: 1;
+}
+.slice{
+  position: absolute;
+  height: 1em;
+  width: 1em;
+  clip: rect(auto, auto, auto, auto);
+  /*
+     when width is less than 50%/ 180deg;
+    clip: rect(0em, 1em, 1em, 0.5em);
+  */
+}
+.slice .bar{
+  position: absolute;
+  border: 0.08em solid #307bbb;
+  width: 0.84em;
+  height: 0.84em;
+  clip: rect(0em, 0.5em, 1em, 0em);
+  border-radius: 50%;
+  transform: rotate(288deg);
+}
+.slice .fill{
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+  position: absolute;
+  border: 0.08em solid #307bbb;
+  width: 0.84em;
+  height: 0.84em;
+  clip: rect(0em, 0.5em, 1em, 0em);
+  border-radius: 50%;
+}
+
+.btn{
+  background-color: #307bbb;
+  font-size:x-large;
+  border-radius: 1em;
+  font-weight: lighter;
+  cursor: pointer;
+  font: small;
+}
+
+    </style>
+  <body>
+    <h1>SWOT Results</h1>
+    <div class="heading">
+      Strength
+    </div>
+    <div class="c100 big">
+      <span class="no"><%= strengths %>%</span>
+      <div class="slice">
+        <div class="bar"></div>
+        <div class="fill"></div>
+      </div>
+    </div>
+    <div class="heading">
+        Weakness
+      </div>
+      <div class="c100 big">
+        <span class="no"><%= weaknesses %>%</span>
+        <div class="slice">
+          <div class="bar"></div>
+          <div class="fill"></div>
+        </div>
+      </div>
+      <div class="heading">
+        Opportunities
+      </div>
+      <div class="c100 big">
+        <span class="no"><%= weaknesses %>%</span>
+        <div class="slice">
+          <div class="bar"></div>
+          <div class="fill"></div>
+        </div>
+      </div>
+      <div class="heading">
+        Threats
+      </div>
+      <div class="c100 big">
+        <span class="no"><%= threats %>%</span>
+        <div class="slice">
+          <div class="bar"></div>
+          <div class="fill"></div>
+        </div>
+      </div>
+
+      <a href="report"><input type="button" class="btn" value="Get Report"></a>
+
+      <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+   -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  </body>
+  <script>
+    $(document).ready(function(){ 
+  $("input[type='text']").keydown(function(event){
+     if (!((event.keyCode == 190) || (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105) || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 37 || event.keyCode == 39 || event.keyCode == 46)) {
+        //not a number key or period so prevent
+        event.preventDefault();
+    }
+  });
+  
+  $("button[type='button']").on("click", function(){
+    var txtboxval = $("input[type='text']").val();
+    if(txtboxval == "" || txtboxval > 100){
+      alert("Enter only number & number should be less than 100.");
+      $("input[type='text']").val("");
+    }else{
+      if(txtboxval > 50){
+        txtboxval = txtboxval-50;
+        var val = 180/50;
+        var fval = val*txtboxval;
+        fval = fval + 180;
+        $(".slice").css({"clip":"rect(auto, auto, auto, auto)"});
+        $(".slice").append("<div class='bar'></div>");
+        $(".fill").css({"transform":"rotate(180deg)"});
+        $(".bar").css({"transform":"rotate("+fval+"deg)"});
+        $(".no").text($("input[type='text']").val()+"%");
+      }else{
+        var val = 180/50;
+        var fval = val*txtboxval;
+        fval = fval;
+        $(".slice").find(".bar").remove();
+        $(".slice").css({"clip":"rect(0em, 1em, 1em, 0.5em)"});
+        $(".fill").css({"transform":"rotate("+fval+"deg)"});
+        $(".no").text($("input[type='text']").val()+"%");
+      }
+    }
+  });
+  
+});
+  </script>
+</html>
+    
